@@ -1,3 +1,9 @@
+
+    gem install rails
+    brew install qmake
+    bundle install
+___
+
 # Dependencies
 
 All can be installed through Homebrew.
