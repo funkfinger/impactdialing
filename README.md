@@ -1,7 +1,56 @@
 
-    gem install rails
-    brew install qmake
+# What I'm Doing...
+
+try to install gems...
+
     bundle install
+
+**failed**: looks like building the native extensions for `capybara-webkit 1.7.1` uses `webkit` which needs `qmake` (part of `qt`?)...
+
+    brew install qt
+
+try again...
+
+    bundle install
+
+**failed again**: `qmake` was installed with the homebrew keg, but not linked... so...
+
+    echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
+    bundle install
+
+**GRRR**: newer versions of `qt` do not work with `webkit`... trying agin...
+
+    brew remove qt
+    brew install qt@5.5
+    echo 'export PATH="/usr/local/opt/qt@5.5/bin:$PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
+    bundle install
+
+**another fail**: `mysql2` has an error.
+
+    brew install mysql
+    bundle install
+    rake
+
+**fail**: `Sorry, you can't use byebug without Readline. To solve this, you need to rebuild Ruby with Readline support...` found [this page](https://github.com/deivid-rodriguez/byebug/issues/289) which suggested this solution:
+
+    ln -s /usr/local/opt/readline/lib/libreadline.dylib /usr/local/opt/readline/lib/libreadline.6.dylib
+
+**fail**: no, that didn't work... trying [this solution](https://gist.github.com/soultech67/33ba09706e091c06ce66684cd28015ac)
+
+    brew --prefix readline
+    rvm reinstall 2.2.4
+    gem install bundler
+    bundle install
+    rake
+
+**fail** same byebug issue... :anguished:
+
+
+
+
+
 ___
 
 # Dependencies
