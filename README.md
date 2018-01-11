@@ -90,6 +90,48 @@ now stop `vagrant`
 
 now I went into VirtualBox application and upped the amount of memory to 2mb.
 
+then start `vagrant` and start `vagrant ssh` again, got to the right folder and try again...
+
+    vagrant
+    vagrant ssh
+    cd /vagrant
+    bundle install
+
+**FAIL:** this solved the `capybara` issues, now a `mysql` error:
+
+    sudo apt install mysql-server
+
+this asked me to set a password (which isn't ideal if we are going to automatically provision this, but I will for now - set it to the one I know well BTW)
+
+    bundle install
+
+**FAIL:** more is required:
+
+    sudo apt install libmysqlclient-dev
+    bundle install
+
+**SUCCESS!** gems are now installed. Now let's see if I can `rake`...
+
+## setup the rails environment
+
+Let's see what rake tasks are available...
+
+    rake -T
+
+I need to setup the database...
+
+    rake db:create
+
+**FAIL:** Since I setup a password in `mysql` the
+.env file needs to be updated with the password on the mysql connection string**s**. The password follows the username `root` with a colon - as in `mysql2://username:password@...`
+
+Once this was updated, tried again...
+
+    rake db:create
+    rake db:migrate
+
+
+
 
 
 
