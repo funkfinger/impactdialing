@@ -66,10 +66,32 @@ package configuration for libexslt is not found`
 
     sudo apt install libxslt1.1
     sudo apt install libxslt1-dev
+    bundle install
 
 **FAIL:** got `nokogiri` installed, now blocking on `capybara`: `Command 'qmake ' not available`
 
     sudo apt install qt5-default
+    bundle install
+
+**FAIL:** according to [this](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit#debian--ubuntu) it looks like even more are necessary...
+
+    sudo apt install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+    bundle install
+
+**FAIL:** ran out of virtual memmory on the VM :frowning:
+
+exit `vagrant ssh`
+
+    exit
+
+now stop `vagrant`
+
+    vagrant halt
+
+now I went into VirtualBox application and upped the amount of memory to 2mb.
+
+
+
 
 
 ___
