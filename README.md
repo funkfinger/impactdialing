@@ -147,7 +147,9 @@ Once this was updated, tried again...
     Unable to annotate report_web_ui_strategy.rb: cannot load a model from report_web_ui_strategy.rb
     Annotated (18): Power, CallAttempt, Script, Call, CallerGroup, Campaign, SimulatedValues, Moderator, NoteResponse, Voter, VoterList, Quota, Answer, Preview, Predictive, Billing::StripeEvent, Billing::CreditCard, Billing::Subscription
 
+Realized that git wasn't installed, installing...
 
+    sudo apt install git
 
 
 ___
