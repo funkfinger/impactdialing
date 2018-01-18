@@ -71,17 +71,21 @@ end
 #
 # ### Indexes
 #
-# * `call_attempt_id`:
-#     * **`call_attempt_id`**
-#     * **`question_id`**
 # * `index_answers_campaign_id_caller_id`:
 #     * **`campaign_id`**
 #     * **`caller_id`**
+# * `index_answers_count_possible_response`:
+#     * **`possible_response_id`**
+#     * **`caller_id`**
+#     * **`created_at`**
 # * `index_answers_count_possible_response_campaign`:
 #     * **`possible_response_id`**
 #     * **`campaign_id`**
 #     * **`caller_id`**
 #     * **`created_at`**
+# * `index_answers_distinct_question`:
+#     * **`question_id`**
+#     * **`campaign_id`**
 # * `index_answers_on_campaign_created_at_possible_response`:
 #     * **`campaign_id`**
 #     * **`created_at`**

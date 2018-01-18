@@ -39,4 +39,5 @@ end
 # **`questions`**           | `text`             |
 # **`notes`**               | `text`             |
 # **`all_states`**          | `text`             |
+# **`campaign_type`**       | `string(255)`      |
 #

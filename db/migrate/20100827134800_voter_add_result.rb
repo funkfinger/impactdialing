@@ -1,9 +1,12 @@
 class VoterAddResult < ActiveRecord::Migration
+  class VoterResult < ActiveRecord::Base
+  end
+
   def self.up
     add_column :voters, :caller_id, :integer
     add_column :voters, :result_digit, :string
     add_column :voters, :attempt_id, :integer
-    
+
     VoterResult.all.each do |result|
       begin
         voter = Voter.find(result.voter_id)
@@ -30,7 +33,7 @@ class VoterAddResult < ActiveRecord::Migration
       t.datetime "created_at"
       t.datetime "updated_at"
     end
-    
+
     remove_column :voters, :attempt_id
     remove_column :voters, :result_digit
     remove_column :voters, :caller_id

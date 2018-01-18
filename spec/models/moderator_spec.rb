@@ -41,8 +41,11 @@ end
 #     * **`active`**
 #     * **`account_id`**
 #     * **`created_at`**
-# * `index_active_moderators`:
-#     * **`account_id`**
+# * `index_moderators_on_active_and_account_id_and_created_at`:
 #     * **`active`**
+#     * **`account_id`**
 #     * **`created_at`**
+# * `index_moderators_on_session_and_active`:
+#     * **`session`**
+#     * **`active`**
 #

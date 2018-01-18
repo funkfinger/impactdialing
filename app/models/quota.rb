@@ -281,8 +281,8 @@ end
 # **`minutes_allowed`**  | `integer`          | `default(0), not null`
 # **`callers_allowed`**  | `integer`          | `default(0), not null`
 # **`disable_calling`**  | `boolean`          | `default(FALSE), not null`
-# **`created_at`**       | `datetime`         | `not null`
-# **`updated_at`**       | `datetime`         | `not null`
+# **`created_at`**       | `datetime`         |
+# **`updated_at`**       | `datetime`         |
 # **`disable_access`**   | `boolean`          | `default(FALSE)`
 #
 # ### Indexes

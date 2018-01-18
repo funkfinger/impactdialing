@@ -130,8 +130,22 @@ Once this was updated, tried again...
     rake db:create
     rake db:migrate
 
+**FAIL:** migration `20100827134800_voter_add_result.rb` has an `uninitialized constant VoterAddResult::VoterResult` error on line 7. Hmmm.... maybe because there are no records? Wraped the update in an `if count > 0` and tried again...
 
+    rake db:drop
+    rake db:create
+    rake db:migrate
 
+**FAIL:** That didn't work, trying information from [this page](http://guides.rubyonrails.org/v3.2.8/migrations.html#using-models-in-your-migrations) - updated migration by adding "local model"
+
+    rake db:drop
+    rake db:create
+    rake db:migrate
+
+**SUCCESS:** the migrations seemed to run but got an error?:
+
+    Unable to annotate report_web_ui_strategy.rb: cannot load a model from report_web_ui_strategy.rb
+    Annotated (18): Power, CallAttempt, Script, Call, CallerGroup, Campaign, SimulatedValues, Moderator, NoteResponse, Voter, VoterList, Quota, Answer, Preview, Predictive, Billing::StripeEvent, Billing::CreditCard, Billing::Subscription
 
 
 
@@ -185,6 +199,10 @@ try again...
 
 **fail** same byebug issue... :anguished:
 
+going to move on from `byebug` for a moment and install `redis`...
+
+    sudo apt install redis-server
+    sudo service redis-server start
 
 
 

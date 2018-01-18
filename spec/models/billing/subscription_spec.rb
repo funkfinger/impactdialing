@@ -281,8 +281,8 @@ end
 # **`provider_status`**        | `string(255)`      |
 # **`plan`**                   | `string(255)`      | `not null`
 # **`settings`**               | `text`             |
-# **`created_at`**             | `datetime`         | `not null`
-# **`updated_at`**             | `datetime`         | `not null`
+# **`created_at`**             | `datetime`         |
+# **`updated_at`**             | `datetime`         |
 # **`provider_start_period`**  | `integer`          |
 # **`provider_end_period`**    | `integer`          |
 #

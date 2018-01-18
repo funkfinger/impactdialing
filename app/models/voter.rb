@@ -248,48 +248,29 @@ end
 #
 # ### Columns
 #
-# Name                          | Type               | Attributes
-# ----------------------------- | ------------------ | ---------------------------
-# **`id`**                      | `integer`          | `not null, primary key`
-# **`phone`**                   | `string(255)`      |
-# **`custom_id`**               | `string(255)`      |
-# **`last_name`**               | `string(255)`      |
-# **`first_name`**              | `string(255)`      |
-# **`middle_name`**             | `string(255)`      |
-# **`suffix`**                  | `string(255)`      |
-# **`email`**                   | `string(255)`      |
-# **`result`**                  | `string(255)`      |
-# **`caller_session_id`**       | `integer`          |
-# **`campaign_id`**             | `integer`          |
-# **`account_id`**              | `integer`          |
-# **`active`**                  | `boolean`          | `default(TRUE)`
-# **`created_at`**              | `datetime`         |
-# **`updated_at`**              | `datetime`         |
-# **`status`**                  | `string(255)`      | `default("not called")`
-# **`voter_list_id`**           | `integer`          |
-# **`call_back`**               | `boolean`          | `default(FALSE)`
-# **`caller_id`**               | `integer`          |
-# **`result_digit`**            | `string(255)`      |
-# **`attempt_id`**              | `integer`          |
-# **`result_date`**             | `datetime`         |
-# **`last_call_attempt_id`**    | `integer`          |
-# **`last_call_attempt_time`**  | `datetime`         |
-# **`num_family`**              | `integer`          | `default(1)`
-# **`family_id_answered`**      | `integer`          |
-# **`result_json`**             | `text`             |
-# **`scheduled_date`**          | `datetime`         |
-# **`address`**                 | `string(255)`      |
-# **`city`**                    | `string(255)`      |
-# **`state`**                   | `string(255)`      |
-# **`zip_code`**                | `string(255)`      |
-# **`country`**                 | `string(255)`      |
-# **`skipped_time`**            | `datetime`         |
-# **`priority`**                | `string(255)`      |
-# **`lock_version`**            | `integer`          | `default(0)`
-# **`enabled`**                 | `integer`          | `default(0), not null`
-# **`voicemail_history`**       | `string(255)`      |
-# **`blocked_number_id`**       | `integer`          |
-# **`household_id`**            | `integer`          |
+# Name                     | Type               | Attributes
+# ------------------------ | ------------------ | ---------------------------
+# **`id`**                 | `integer`          | `not null, primary key`
+# **`Phone`**              | `string(255)`      |
+# **`CustomID`**           | `string(255)`      |
+# **`LastName`**           | `string(255)`      |
+# **`FirstName`**          | `string(255)`      |
+# **`MiddleName`**         | `string(255)`      |
+# **`Suffix`**             | `string(255)`      |
+# **`Email`**              | `string(255)`      |
+# **`result`**             | `string(255)`      |
+# **`caller_session_id`**  | `integer`          |
+# **`campaign_id`**        | `integer`          |
+# **`user_id`**            | `integer`          |
+# **`active`**             | `boolean`          | `default(TRUE)`
+# **`created_at`**         | `datetime`         |
+# **`updated_at`**         | `datetime`         |
+# **`status`**             | `string(255)`      | `default("not called")`
+# **`voter_list_id`**      | `integer`          |
+# **`call_back`**          | `boolean`          | `default(FALSE)`
+# **`caller_id`**          | `integer`          |
+# **`result_digit`**       | `string(255)`      |
+# **`attempt_id`**         | `integer`          |
 #
 # ### Indexes
 #
@@ -300,15 +281,6 @@ end
 #     * **`enabled`**
 #     * **`priority`**
 #     * **`status`**
-# * `index_voters_caller_id_campaign_id`:
-#     * **`caller_id`**
-#     * **`campaign_id`**
-# * `index_voters_customid_campaign_id`:
-#     * **`custom_id`**
-#     * **`campaign_id`**
-# * `index_voters_on_Phone_and_voter_list_id`:
-#     * **`phone`**
-#     * **`voter_list_id`**
 # * `index_voters_on_attempt_id`:
 #     * **`attempt_id`**
 # * `index_voters_on_caller_session_id`:
@@ -324,6 +296,9 @@ end
 #     * **`id`**
 # * `index_voters_on_household_id`:
 #     * **`household_id`**
+# * `index_voters_on_phone_and_voter_list_id`:
+#     * **`phone`**
+#     * **`voter_list_id`**
 # * `index_voters_on_phone_campaign_id_last_call_attempt_time`:
 #     * **`phone`**
 #     * **`campaign_id`**
@@ -332,16 +307,8 @@ end
 #     * **`status`**
 # * `index_voters_on_voter_list_id`:
 #     * **`voter_list_id`**
-# * `report_query`:
-#     * **`campaign_id`**
-#     * **`id`**
 # * `voters_campaign_status_time`:
 #     * **`campaign_id`**
 #     * **`status`**
 #     * **`last_call_attempt_time`**
-# * `voters_enabled_campaign_time_status`:
-#     * **`enabled`**
-#     * **`campaign_id`**
-#     * **`last_call_attempt_time`**
-#     * **`status`**
 #

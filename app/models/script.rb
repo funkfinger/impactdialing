@@ -116,13 +116,15 @@ end
 #
 # ### Columns
 #
-# Name                | Type               | Attributes
-# ------------------- | ------------------ | ---------------------------
-# **`id`**            | `integer`          | `not null, primary key`
-# **`name`**          | `string(255)`      |
-# **`active`**        | `boolean`          | `default(TRUE)`
-# **`account_id`**    | `integer`          |
-# **`created_at`**    | `datetime`         |
-# **`updated_at`**    | `datetime`         |
-# **`voter_fields`**  | `text(2147483647)`  |
+# Name                 | Type               | Attributes
+# -------------------- | ------------------ | ---------------------------
+# **`id`**             | `integer`          | `not null, primary key`
+# **`name`**           | `string(255)`      |
+# **`active`**         | `boolean`          | `default(TRUE)`
+# **`account_id`**     | `integer`          |
+# **`created_at`**     | `datetime`         |
+# **`updated_at`**     | `datetime`         |
+# **`voter_fields`**   | `text(2147483647)`  |
+# **`robo`**           | `boolean`          | `default(FALSE)`
+# **`for_voicemail`**  | `boolean`          |
 #

@@ -40,10 +40,11 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.integer  "call_attempt_id"
   end
 
-  add_index "answers", ["call_attempt_id", "question_id"], name: "call_attempt_id", using: :btree
   add_index "answers", ["campaign_id", "caller_id"], name: "index_answers_campaign_id_caller_id", using: :btree
   add_index "answers", ["campaign_id", "created_at", "possible_response_id"], name: "index_answers_on_campaign_created_at_possible_response", using: :btree
+  add_index "answers", ["possible_response_id", "caller_id", "created_at"], name: "index_answers_count_possible_response", using: :btree
   add_index "answers", ["possible_response_id", "campaign_id", "caller_id", "created_at"], name: "index_answers_count_possible_response_campaign", using: :btree
+  add_index "answers", ["question_id", "campaign_id"], name: "index_answers_distinct_question", using: :btree
   add_index "answers", ["question_id", "campaign_id"], name: "index_distinct_question", using: :btree
   add_index "answers", ["voter_id", "question_id"], name: "index_answers_on_voter_id_and_question_id", using: :btree
 
@@ -53,8 +54,8 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.string   "exp_year",    null: false
     t.string   "last4",       null: false
     t.string   "provider_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "billing_credit_cards", ["account_id"], name: "index_billing_credit_cards_on_account_id", using: :btree
@@ -68,8 +69,8 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.text     "data"
     t.datetime "processed"
     t.boolean  "livemode"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "billing_stripe_events", ["provider_id"], name: "index_billing_stripe_events_on_provider_id", using: :btree
@@ -80,8 +81,8 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.string   "provider_status"
     t.string   "plan",                  null: false
     t.text     "settings"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "provider_start_period"
     t.integer  "provider_end_period"
   end
@@ -135,7 +136,7 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.boolean  "voter_response_processed",     default: false
     t.boolean  "debited",                      default: false
     t.integer  "recording_id"
-    t.boolean  "recording_delivered_manually"
+    t.boolean  "recording_delivered_manually", default: false
     t.integer  "household_id"
   end
 
@@ -158,8 +159,8 @@ ActiveRecord::Schema.define(version: 20151030001601) do
   create_table "caller_groups", force: true do |t|
     t.string   "name",        null: false
     t.integer  "campaign_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "account_id",  null: false
   end
 
@@ -244,22 +245,7 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.text     "questions"
     t.text     "notes"
     t.text     "all_states"
-  end
-
-  create_table "calls_dup", id: false, force: true do |t|
-    t.integer  "id",                 default: 0, null: false
-    t.integer  "call_attempt_id"
-    t.string   "state"
-    t.string   "call_sid"
-    t.string   "call_status"
-    t.string   "answered_by"
-    t.integer  "recording_duration"
-    t.string   "recording_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "questions"
-    t.text     "notes"
-    t.text     "all_states"
+    t.string   "campaign_type"
   end
 
   create_table "campaigns", force: true do |t|
@@ -339,8 +325,9 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.integer  "account_id"
   end
 
-  add_index "moderators", ["account_id", "active", "created_at"], name: "index_active_moderators", using: :btree
+  add_index "moderators", ["active", "account_id", "created_at"], name: "index_moderators_on_active_and_account_id_and_created_at", using: :btree
   add_index "moderators", ["session", "active", "account_id", "created_at"], name: "active_moderators", using: :btree
+  add_index "moderators", ["session", "active"], name: "index_moderators_on_session_and_active", using: :btree
 
   create_table "note_responses", force: true do |t|
     t.integer "voter_id",        null: false
@@ -349,9 +336,6 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.integer "call_attempt_id"
     t.integer "campaign_id"
   end
-
-  add_index "note_responses", ["call_attempt_id", "id"], name: "call_attempt_id", using: :btree
-  add_index "note_responses", ["voter_id", "note_id"], name: "voter_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.text    "note",         null: false
@@ -384,8 +368,8 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.integer  "minutes_allowed", default: 0,     null: false
     t.integer  "callers_allowed", default: 0,     null: false
     t.boolean  "disable_calling", default: false, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "disable_access",  default: false
   end
 
@@ -426,6 +410,12 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.float    "best_conversation"
     t.float    "longest_conversation"
     t.float    "best_wrapup_time"
+  end
+
+  create_table "temp_voter_lists", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "transfer_attempts", force: true do |t|
@@ -503,7 +493,7 @@ ActiveRecord::Schema.define(version: 20151030001601) do
     t.string   "purpose",            default: "import"
   end
 
-  add_index "voter_lists", ["account_id", "name"], name: "index_voter_lists_on_user_id_and_name", unique: true, using: :btree
+  add_index "voter_lists", ["account_id", "name"], name: "index_voter_lists_on_account_id_and_name", unique: true, using: :btree
 
   create_table "voters", force: true do |t|
     t.string   "phone"
@@ -549,18 +539,14 @@ ActiveRecord::Schema.define(version: 20151030001601) do
 
   add_index "voters", ["attempt_id"], name: "index_voters_on_attempt_id", using: :btree
   add_index "voters", ["blocked_number_id"], name: "index_on_blocked_number_id", using: :btree
-  add_index "voters", ["caller_id", "campaign_id"], name: "index_voters_caller_id_campaign_id", using: :btree
   add_index "voters", ["caller_session_id"], name: "index_voters_on_caller_session_id", using: :btree
   add_index "voters", ["campaign_id", "active", "status", "call_back"], name: "index_voters_on_campaign_id_and_active_and_status_and_call_back", using: :btree
   add_index "voters", ["campaign_id", "enabled", "priority", "status"], name: "index_priority_voters", using: :btree
-  add_index "voters", ["campaign_id", "id"], name: "report_query", using: :btree
   add_index "voters", ["campaign_id", "status", "id"], name: "index_voters_on_campaign_id_and_status_and_id", using: :btree
   add_index "voters", ["campaign_id", "status", "last_call_attempt_time"], name: "voters_campaign_status_time", using: :btree
-  add_index "voters", ["custom_id", "campaign_id"], name: "index_voters_customid_campaign_id", using: :btree
-  add_index "voters", ["enabled", "campaign_id", "last_call_attempt_time", "status"], name: "voters_enabled_campaign_time_status", using: :btree
   add_index "voters", ["household_id"], name: "index_voters_on_household_id", using: :btree
   add_index "voters", ["phone", "campaign_id", "last_call_attempt_time"], name: "index_voters_on_phone_campaign_id_last_call_attempt_time", using: :btree
-  add_index "voters", ["phone", "voter_list_id"], name: "index_voters_on_Phone_and_voter_list_id", using: :btree
+  add_index "voters", ["phone", "voter_list_id"], name: "index_voters_on_phone_and_voter_list_id", using: :btree
   add_index "voters", ["status"], name: "index_voters_on_status", using: :btree
   add_index "voters", ["voter_list_id"], name: "index_voters_on_voter_list_id", using: :btree
 

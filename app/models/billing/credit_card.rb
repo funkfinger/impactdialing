@@ -36,8 +36,8 @@ end
 # **`exp_year`**     | `string(255)`      | `not null`
 # **`last4`**        | `string(255)`      | `not null`
 # **`provider_id`**  | `string(255)`      | `not null`
-# **`created_at`**   | `datetime`         | `not null`
-# **`updated_at`**   | `datetime`         | `not null`
+# **`created_at`**   | `datetime`         |
+# **`updated_at`**   | `datetime`         |
 #
 # ### Indexes
 #

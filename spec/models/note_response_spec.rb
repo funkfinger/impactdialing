@@ -48,12 +48,3 @@ end
 # **`call_attempt_id`**  | `integer`          |
 # **`campaign_id`**      | `integer`          |
 #
-# ### Indexes
-#
-# * `call_attempt_id`:
-#     * **`call_attempt_id`**
-#     * **`id`**
-# * `voter_id`:
-#     * **`voter_id`**
-#     * **`note_id`**
-#

@@ -292,7 +292,7 @@ end
 #
 # ### Indexes
 #
-# * `index_voter_lists_on_user_id_and_name` (_unique_):
+# * `index_voter_lists_on_account_id_and_name` (_unique_):
 #     * **`account_id`**
 #     * **`name`**
 #

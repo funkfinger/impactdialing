@@ -53,7 +53,7 @@ end
 # **`id`**           | `integer`          | `not null, primary key`
 # **`name`**         | `string(255)`      | `not null`
 # **`campaign_id`**  | `integer`          | `not null`
-# **`created_at`**   | `datetime`         | `not null`
-# **`updated_at`**   | `datetime`         | `not null`
+# **`created_at`**   | `datetime`         |
+# **`updated_at`**   | `datetime`         |
 # **`account_id`**   | `integer`          | `not null`
 #
