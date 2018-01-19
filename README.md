@@ -164,7 +164,18 @@ added `.env.test` to `.gitignore` file. Then updated to include the MySQL passwo
 
     bundle exec rake db:test:prepare --trace
 
-**FAIL:** following error... `ActiveRecord::StatementInvalid: Mysql2::Error: Cannot delete or update a parent row: a foreign key constraint fails: DROP TABLE 'accounts'` hmm, now what...
+**FAIL:** following error... `ActiveRecord::StatementInvalid: Mysql2::Error: Cannot delete or update a parent row: a foreign key constraint fails: DROP TABLE 'accounts'` hmm, now what... maybe let's try again with test env... also, noticed that the schema file says **not to use migrations** to start up the db, but to use the schema load rake task:
+
+    bundle exec rake db:drop RAILS_ENV=test
+    bundle exec rake db:create RAILS_ENV=test
+    bundle exec rake db:schema:load RAILS_ENV=test
+    bundle exec rake db:test:prepare RAILS_ENV=test
+    bundle exec rake spec RAILS_ENV=test
+
+**SUCCESS!** IT'S RUNNING TESTS!!! :smile: :smile: :smile: :smile: :smile: :smile:
+
+
+
 
 ___
 # What I Was Doing (which didn't work)...
