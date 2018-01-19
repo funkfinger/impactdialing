@@ -151,6 +151,20 @@ Realized that git wasn't installed, installing...
 
     sudo apt install git
 
+added `.env.test` to `.gitignore` file. Then updated to include the MySQL password I created. Now let's see if we can create the database...
+
+    bundle exec rake db:create RAILS_ENV=test
+    bundle exec rake db:migrate RAILS_ENV=test
+
+**SUCCESS!** now I have a test database, let's see if the tests can run...
+
+    bundle exec rake spec
+
+**FAIL:** issues with running the tests in `db:test:prepare` - let's try that on it's own...
+
+    bundle exec rake db:test:prepare --trace
+
+**FAIL:** following error... `ActiveRecord::StatementInvalid: Mysql2::Error: Cannot delete or update a parent row: a foreign key constraint fails: DROP TABLE 'accounts'` hmm, now what...
 
 ___
 # What I Was Doing (which didn't work)...
