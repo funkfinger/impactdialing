@@ -1,6 +1,15 @@
 
 # What I'm Doing Now...
 
+Starting the thing in test mode:
+
+    vagrant box update
+    vagrant up
+    vagrant ssh
+    cd /vagrant
+    bundle exec rake spec RAILS_ENV=test
+
+
 ## Create a Vagrant provision script - using shell method...
 
 added this to top of `Vagrantfile`:
