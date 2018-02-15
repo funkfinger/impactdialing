@@ -25,6 +25,7 @@ SCRIPT3
 
 $script4 = <<SCRIPT4
 echo doing the bundle install...
+source $HOME/.rvm/scripts/rvm
 cd /vagrant
 rvm use
 bundle config build.nokogiri --use-system-libraries
@@ -32,6 +33,11 @@ bundle install --quiet
 SCRIPT4
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # add memory...
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+  end
+
   config.vm.box = "ubuntu/trusty64"
   config.vm.network "private_network", type: "dhcp"
   config.vm.provision :shell, inline: $script1

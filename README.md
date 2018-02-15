@@ -1,7 +1,11 @@
 
 # What I'm Doing Now...
 
-Starting the thing in test mode:
+## Vagrant Setup
+
+Using `vagrant` - we need that installed on the host OS - for OS X I mostly followed [these instructions](http://sourabhbajaj.com/mac-setup/Vagrant/README.html) - at least to get `vagrant` installed...
+
+Then...
 
     vagrant box update
     vagrant up
