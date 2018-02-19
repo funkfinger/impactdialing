@@ -5,10 +5,11 @@ echo provisioning...
 echo system update...
 sudo apt update
 sudo apt upgrade -s
-sudo apt install libxml2 libxml2-dev libxslt1.1 libxslt1-dev libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x redis-server -s
-sudo apt install qt5base-dev qtdeclarative5-dev qt5-qmake qt5-default qttools5-dev-tools qt5-default qtchooser -s
+sudo apt install libxml2 libxml2-dev libxslt1.1 libxslt1-dev libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x redis-server -y
+sudo apt install qt5base-dev qtdeclarative5-dev qt5-qmake qt5-default qttools5-dev-tools qt5-default qtchooser -y
+sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x -y
 export DEBIAN_FRONTEND=noninteractive
-sudo -E apt-get -q -y install mysql-server mysql-client libmysqlclient-dev -s
+sudo -E apt-get -q -y install mysql-server mysql-client libmysqlclient-dev -y
 SCRIPT1
 
 
