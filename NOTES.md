@@ -11,13 +11,27 @@ Once you have Vagrant installed, `cd` to the root of this project directory and 
 
 This will take a while, and will require a good amount of downloading. Be patient. If all works, you should have a rails server running on (http://localhost:3001). If not, something went wrong.
 
+## Notes about the Vagrant provisioning
+
+The provisioning scripts are included inline in the `Vagrantfile`. There are currently multiple scripts which easily could be combined into a single script if necessary.
+
+There are likely extra `apt` packages getting installed because figuring out the correct combination of packages to satisfy the native library requirement for the `gems` was difficult. Specifically the requirements for `capybara-webkit` which runs a headless Safari browser for testing.
+
+Vagrant is installing Ruby using Ruby Version Manager - `rvm`. This is dumb, but that's just the way it is for now.
+
+With VirtualBox as the provider for Vagrant, the memory would run out with the default settings (512MB I think), so the image is set up to use 2GB. Hopefully your machine can deal with that allocation.
+
+The `Vagrantfile` is forwarding port `3000` - the default port that the `rails server` starts on to port `3001`. This is because on my machine, I was using `3000` for another purpose.
+
+
+
 
 
 
 
 ____
 
-#OLDER STUFF BELOW...
+# OLDER STUFF BELOW...
 
 Below is a 'scratch pad' of all the things I went through to try and get this running on my OS X High Sierra machine.
 
