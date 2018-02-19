@@ -1,3 +1,28 @@
+
+# Using Vagrant to get this project up and running...
+
+## Install [Vagrant](https://www.vagrantup.com)
+
+Follow the instructions to get [Vagrant](https://www.vagrantup.com) running on your OS. Using [VirtualBox](https://www.virtualbox.org) with Vagrant is probably your easiest path to success. **NOTE:** for OS X command line install, try [these instructions](http://sourabhbajaj.com/mac-setup/Vagrant/README.html). I did.
+
+Once you have Vagrant installed, `cd` to the root of this project directory and run:
+
+    vagrant up
+
+This will take a while, and will require a good amount of downloading. Be patient. If all works, you should have a rails server running on (http://localhost:3001). If not, something went wrong.
+
+
+
+
+
+____
+
+#OLDER STUFF BELOW...
+
+Below is a 'scratch pad' of all the things I went through to try and get this running on my OS X High Sierra machine.
+
+____
+
 # What I'm Doing Now...
 
 ## Vagrant Setup
