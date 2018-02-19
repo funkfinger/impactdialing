@@ -5,7 +5,7 @@ echo provisioning...
 echo system update...
 sudo apt update
 sudo apt upgrade -s
-sudo apt install libxml2 libxml2-dev libxslt1.1 libxslt1-dev libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x redis-server -y
+sudo apt install libxml2 libxml2-dev libxslt1.1 libxslt1-dev libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x redis-server git -y
 sudo apt install qt5base-dev qtdeclarative5-dev qt5-qmake qt5-default qttools5-dev-tools qt5-default qtchooser -y
 sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x -y
 export DEBIAN_FRONTEND=noninteractive
@@ -37,6 +37,14 @@ source $HOME/.rvm/scripts/rvm
 cd /vagrant
 rvm use
 bundle install
+echo setting up the databases...
+bundle exec rake db:create RAILS_ENV=test
+bundle exec rake db:schema:load RAILS_ENV=test
+bundle exec rake db:create RAILS_ENV=development
+bundle exec rake db:schema:load RAILS_ENV=development
+echo ******* DONE!!! If all went ok, you might have a server available at http://localhost:3001/
+echo start the rails server...
+bundle exec rails server
 SCRIPT4
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
